@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="logo.png" type="logo/png" />
+  <title>Corretor.AI 📚</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --primary: #022f69;
+  --primary-dark: #00316d;
+  --bg: #e0f7ff;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --error: #ef4444;
+  --border: #cbd5e1;
+}
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 50px 20px 30px;
+  border-bottom: 5px solid var(--primary-dark);
+  animation: slideIn 1s ease-out;
+}
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00c6ff, 0 0 80px #0072ff;
+    color: #fff;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00f7ff, 0 0 80px #00c6ff, 0 0 100px #0072ff;
+    transform: scale(1.05);
+  }
+  100% {
+    text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00c6ff, 0 0 80px #0072ff;
+    transform: scale(1);
+  }
+}
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  animation: neonGlow 2.5s ease-in-out infinite;
+}
+p.description {
+  font-size: 1.1rem;
+  color: #e0f2ff;
+  margin-top: 10px;
+}
+.container {
+  max-width: 900px;
+  margin: -30px auto 40px;
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 198, 255, 0.3);
+  animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: #f0f9ff;
+}
+button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1rem;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-right: 12px;
+  cursor: pointer;
+  transform: scale(1);
+}
+button:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 198, 255, 0.6);
+}
+.result {
+  margin-top: 50px;
+  padding: 25px;
+  background-color: #dbeafe;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  animation: fadeInUp 0.8s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.result h3 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+}
+.result div {
+  margin-bottom: 12px;
+  padding: 14px;
+  background: #e0f2fe;
+  border-left: 5px solid var(--primary);
+  border-radius: 6px;
+  animation: fadeIn 0.5s ease-in;
+}
+.erros {
+  font-size: 0.9rem;
+  color: var(--error);
+  margin-top: 6px;
+}
+.media {
+  margin-top: 40px;
+  font-size: 1.2rem;
+  color: var(--text);
+  font-weight: 600;
+  padding: 20px;
+  background-color: #c7d2fe;
+  border-left: 5px solid var(--primary);
+  border-radius: 10px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+footer {
+  text-align: center;
+  margin-top: 60px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 20px;
+}
+  </style>    
+</head>
+<body>
+  <header>
+    <h1>Corretor.AI ✏️</h1>
+    <p class="description">Corrija provas objetivas com Fluidez, Praticidade e Elegância.</p>
+  </header>
+  <main class="container">
+    <label for="gabarito">🔑 Gabarito da prova (ex: A,B,C,D,A)</label>
+    <input type="text" id="gabarito" placeholder="A,B,C,D,A" />
+
+    <label for="csv">📂 Importar respostas (.csv)</label>
+    <input type="file" id="csv" accept=".csv" />
+
+    <label for="respostas">🧑‍🎓 Respostas dos alunos (ex: João,A,B,C,D,A)</label>
+    <textarea id="respostas" rows="6" placeholder="João,A,B,C,D,A\nMaria,B,B,C,D,A"></textarea>
+
+    <button onclick="corrigirProva()">✅ Corrigir Prova</button>
+    <button onclick="baixarResultados()">📥 Baixar Resultados</button>
+
+    <div class="result" id="resultado"></div>
+    <div class="media" id="mediaGeral"></div>
+  </main>
+
+  <footer>
+    Desenvolvido por CEO | Alexandre Melo 👑 &copy; 2025 — Prático, Elegante e Funcional.
+  </footer>
+
+  <script>
+    let resultadosFinais = [];
+
+    document.getElementById("csv").addEventListener("change", function (e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        document.getElementById("respostas").value = event.target.result.trim();
+        corrigirProva();
+      };
+      if (file) {
+        reader.readAsText(file);
+      }
+    });
+
+    function corrigirProva() {
+      const gabarito = document.getElementById("gabarito").value.trim().split(',');
+      const respostasTexto = document.getElementById("respostas").value.trim().split('\n');
+      const resultadoDiv = document.getElementById("resultado");
+      const mediaDiv = document.getElementById("mediaGeral");
+
+      if (!gabarito || gabarito.length === 0 || !respostasTexto) {
+        resultadoDiv.innerHTML = "<p>❗ Preencha todos os campos corretamente.</p>";
+        return;
+      }
+
+      let html = "<h3>📊 Resultados da Correção:</h3>";
+      resultadosFinais = [];
+      let somaPercentuais = 0;
+
+      respostasTexto.forEach((linha, index) => {
+        if (!linha.trim()) return;
+        const partes = linha.split(',');
+        const nome = partes[0];
+        const respostas = partes.slice(1);
+        let acertos = 0;
+        let erros = [];
+
+        respostas.forEach((resposta, i) => {
+          if (resposta.trim().toUpperCase() === gabarito[i]?.trim().toUpperCase()) {
+            acertos++;
+          } else {
+            erros.push(i + 1);
+          }
+        });
+
+        const porcentagem = ((acertos / gabarito.length) * 100).toFixed(2);
+        somaPercentuais += parseFloat(porcentagem);
+
+        html += `<div><strong>${nome}:</strong> ${acertos} / ${gabarito.length} acertos (${porcentagem}%)`;
+        if (erros.length > 0) {
+          html += `<div class='erros'>❌ Erros nas questões: ${erros.join(', ')}</div>`;
+        }
+        html += `</div>`;
+
+        resultadosFinais.push(`${nome},${acertos}/${gabarito.length},${porcentagem}%,Erros: ${erros.join(' | ')}`);
+      });
+
+      const media = (somaPercentuais / respostasTexto.length).toFixed(2);
+      mediaDiv.innerHTML = `📈 Média geral da turma: <strong>${media}%</strong>`;
+
+      resultadoDiv.innerHTML = html;
+    }
+
+    function baixarResultados() {
+      if (resultadosFinais.length === 0) return;
+
+      const blob = new Blob([resultadosFinais.join('\n')], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'Resultados_Corretor_AI.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
